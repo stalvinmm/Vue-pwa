@@ -1,57 +1,84 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+<div>
+  <v-app>
+  <v-card
+    class="mx-auto"
+    max-width="400"
+  >
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title class="text-h5">
+          San Francisco
+        </v-list-item-title>
+        <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-card-text>
+      <v-row align="center">
+        <v-col
+          class="text-h2"
+          cols="6"
+        >
+          23&deg;C
+        </v-col>
+        <v-col cols="6">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sun.png"
+            alt="Sunny image"
+            width="92"
+          ></v-img>
+        </v-col>
+      </v-row>
+    </v-card-text>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-send</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>23 km/h</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-cloud-download</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>48%</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-slider
+      v-model="time"
+      :max="6"
+      :tick-labels="labels"
+      class="mx-4"
+      ticks
+    ></v-slider>
+
+    <v-list class="transparent">
+      <v-list-item
+        v-for="item in forecast"
+        :key="item.day"
+      >
+        <v-list-item-title>{{ item.day }}</v-list-item-title>
+
+        <v-list-item-icon>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-subtitle class="text-right">
+          {{ item.temp }}
+        </v-list-item-subtitle>
+      </v-list-item>
+    </v-list>
+
+    <v-divider></v-divider>
+
+    <v-card-actions>
+      <v-btn text>
+        Full Report
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  </v-app>
+</div>
 </template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
